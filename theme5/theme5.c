@@ -295,7 +295,7 @@ int main(){
 void print_tab(unsigned int n_row, unsigned int n_col, int tab[n_row][n_col]){
   for(unsigned int i=0; i<n_row; i++){
     for(unsigned int j=0; j<n_col; j++)
-      printf("tab[%d][%d] : \t %d \t %p\n ",i, j, tab[i][j], &tab[i][j]);
+      printf("tab[%d][%d] : \t %d \t\t %p\n ",i, j, tab[i][j], &tab[i][j]);
   }
 }
 

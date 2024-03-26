@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// #define EX_ALLOC_AFF_1
-#define EX_ALLOC_AFF_2
+#define EX_ALLOC_AFF_1
+// #define EX_ALLOC_AFF_2
 // #define EX_TEMP_NAME
 // #define EX_TAB
 // #define EX_POINT
@@ -89,7 +89,6 @@ int main(){
 
   f(l);
 
-  g++; s++; l++;
   printf("main > g, s, l %d %d %d\n", g, s, l);
 
   return 0;

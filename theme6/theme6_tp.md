@@ -51,58 +51,6 @@ qui renvoie une copie allouée dynamiquement de la chaîne de caractères
    exemple copiez une à une les chaînes de caractères de `argv` et
    affichez-les. Pensez à libérer avec `free()` la mémoire allouée.
 
-### Allocation, libération de structures — _exercice de TD_ ###
-
-Soit les déclarations suivantes :
-
-```c
-struct point_s {
-    int p_x;
-    int p_y;
-};
-struct point_s *new_point(int x, int y);
-void free_point(struct point_s *p);
-```
-
-La fonction `new_point()` alloue et renvoie l'adresse d'une nouvelle
-structure de type `struct point_s`, dont les champs sont initialisés
-avec les valeurs des paramètres `x` et `y`.  
-La fonction `free_point()` se charge de libérer la mémoire allouée
-correspondante à `p`. 
-
-1. Donnez une définition de la fonction `new_point()`.
-
-2. Donnez une définition de la fonction `free_point()`.
-
-Soient les déclarations suivantes :
-
-```c
-struct etudiant_s {
-    char *etu_nom;
-    char *etu_prenom;
-    int   etu_no_etudiant;
-}; 
-struct etudiant_s *new_etudiant(const char *nom, const char *prenom, int no_etudiant);
-void free_etudiant(struct etudiant_s *etu);
-```
-
-La fonction `new_etudiant()` alloue et renvoie l'adresse d'une
-nouvelle structure de type `struct etudiant_s`.   
-Les champs `etu_nom` et `etu_prenom` sont initialisés à l'aide d'une
-*copie* des valeurs des paramètres `nom` et `prenom`.
-
-La fonction `free_etudiant()` se charge de libérer la mémoire allouée
-correspondante à `e`. 
-
-3. Donnez une définition de la fonction `new_etudiant()`.
-
-4. Donnez une définition de la fonction `free_etudiant()`. 
-
-5. Proposez une modification du type `struct etudiant_s` et des
-   fonctions d'allocation et désallocation associées pour associer
-   à un étudiant un certain nombre de notes (valeurs de type `int` par
-   exemple).
-
 ### Tableaux grandissants — _exercice de TP_ ###
 
 Les tableaux en C sont de taille fixe. L'objet de cet exercice est de
