@@ -8,4 +8,4 @@ theme4 : theme4.o
 	$(CC) $(CFLAGS) $^ -o theme4.out
 
 clean:
-	rm -rf *.o theme4.out
+	rm -rf *.o *.out

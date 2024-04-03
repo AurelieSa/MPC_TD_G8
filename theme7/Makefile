@@ -4,8 +4,8 @@ CC = gcc
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-theme6 : theme6.o
-	$(CC) $(CFLAGS) $^ -o theme6.out
+theme7 : theme7.o
+	$(CC) $(CFLAGS) $^ -o theme7.out
 
 clean:
 	rm -rf *.o *.out
