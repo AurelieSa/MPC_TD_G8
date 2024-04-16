@@ -45,7 +45,7 @@ int main(void){
 #ifdef EX2
 
 void get(void* tab, int elem_size, int idx, void* dst){
-
+  
   char* tab_char = (char *)tab;
   char* dst_char = (char *)dst;
 
@@ -53,6 +53,7 @@ void get(void* tab, int elem_size, int idx, void* dst){
 
   for(int i=0; i<elem_size; i++)
     dst_char[i] = tab_char[i];
+
 }
 
 int main() {
@@ -61,7 +62,9 @@ int main() {
 
   get(tab, sizeof(int), 1, &v);
 
-  printf("v = %d - tab[i] = %d\n", v, tab[1]);
+  printf("v = %d - tab[1] = %d\n", v, tab[1]);
+
+  //printf("%ld\n", sizeof(void*));
 
   return 0;
 }
@@ -71,8 +74,8 @@ int main() {
 
 struct noeud_s {
   int val;
-  struct noeud_s* prev;
   struct noeud_s* next;
+  struct noeud_s* prev;
 };
 
 struct liste_s {
@@ -85,74 +88,67 @@ int is_empty(struct liste_s* list){
 }
 
 void init(struct liste_s* list){
+  
+  if(list==NULL)
+    return;
+
   list->first = NULL;
   list->last = NULL;
 }
 
-struct noeud_s* ajout_debut(struct liste_s* liste, int val){
-
+struct noeud_s* ajout_debut(struct liste_s* list, int val){
   struct noeud_s* node;
 
-  if(liste==NULL)
+  if(list==NULL)
     return NULL;
 
   node = malloc(sizeof(struct noeud_s));
 
   if(node==NULL)
     return NULL;
-  
+
   node->val = val;
-  node->next = liste->first;
+  node->next = list->first;
   node->prev = NULL;
-  
-  if(is_empty(liste)){
-    liste->first = node;
-    liste->last = node;
+
+  if(is_empty(list)){
+    list->first = node;
+    list->last = node;
   } else {
-    liste->first->prev = node;
-    liste->first = node;
+    list->first->prev = node;
+    list->first = node;
   }
-  
+
   return node;
 }
 
 void afficher_inverse(struct liste_s* liste){
-
+  
   struct noeud_s* node;
 
+  if(liste==NULL)
+    return;
+
   if(is_empty(liste)){
-    printf("List is empty\n");
+    printf("empty lsit\n");
     return;
   }
 
   node = liste->last;
-  
+
   while(node!=NULL){
-    printf("%d", node->val);
-    if(node->prev != NULL)
-      printf(" <- ");
+    printf("%d\n", node->val);
     node = node->prev;
   }
 
-  printf("|\n");
+  printf("\n");
 }
 
 void supprimer(struct liste_s* liste, struct noeud_s* noeud){
   
-  if(liste->first==liste->last && noeud==liste->first){
-    liste->first = NULL;
-    liste->last = NULL;
-  } else if(noeud == liste->first){
-    liste->first = noeud->next;
-    noeud->next->prev = noeud->prev;
-  } else if(noeud == liste->last){
-    liste->last = noeud->prev;
-    noeud->prev->next =noeud->next;
-  } else {
-    noeud->prev->next = noeud->next;
-    noeud->next->prev = noeud->prev;
-  }
-  
+  noeud->prev->next = noeud->next;
+  noeud->next->prev = noeud->prev;
+
   free(noeud);
 
 }
