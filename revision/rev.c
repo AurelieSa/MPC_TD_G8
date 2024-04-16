@@ -144,10 +144,21 @@ void afficher_inverse(struct liste_s* liste){
   printf("\n");
 }
 
-void supprimer(struct liste_s* liste, struct noeud_s* noeud){
+void supprimer(struct liste_s* list, struct noeud_s* noeud){
   
-  noeud->prev->next = noeud->next;
-  noeud->next->prev = noeud->prev;
+  if(list->first==list->last){ // cas d'une liste a 1 element qui va renvoyer une liste vide
+    list->first = NULL;
+    list->last = NULL;
+  } else if(noeud==list->first) { // cas si on sup la premier element de la liste (prev=NULL)
+    list->first = noeud->next;
+    noeud->next->prev = noeud->prev;
+  } else if(noeud==list->last) { // cas si on sup le dernier element de la liste (next=NULL)
+    list->last = noeud->prev;
+    noeud->prev->next = noeud->next;
+  } else { // cas general, on ne risque plus de modifier des pointeur sur nul
+    noeud->prev->next = noeud->next;
+    noeud->next->prev = noeud->prev;
+  }
 
   free(noeud);
 
